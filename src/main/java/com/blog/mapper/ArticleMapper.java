@@ -4,7 +4,9 @@ import com.blog.model.Article;
 import com.blog.model.ArticleExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
+@Component
 public interface ArticleMapper {
     int countByExample(ArticleExample example);
 

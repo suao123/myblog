@@ -10,7 +10,14 @@ mybatis:
     -classpath: mapper/*.xml
     -classpath*: com/**/mapper/*.xml
 
+
 logging:
   level:
     root: info #日志配置DEBUG，INFO，WARN，REEOR
     com.blog: debug
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: countSql

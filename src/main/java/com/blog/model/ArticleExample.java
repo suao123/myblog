@@ -373,6 +373,126 @@ public class ArticleExample {
             addCriterion("content not between", value1, value2, "content");
             return (Criteria) this;
         }
+
+        public Criteria andCreatedIsNull() {
+            addCriterion("created is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedIsNotNull() {
+            addCriterion("created is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedEqualTo(Integer value) {
+            addCriterion("created =", value, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedNotEqualTo(Integer value) {
+            addCriterion("created <>", value, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedGreaterThan(Integer value) {
+            addCriterion("created >", value, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("created >=", value, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedLessThan(Integer value) {
+            addCriterion("created <", value, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedLessThanOrEqualTo(Integer value) {
+            addCriterion("created <=", value, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedIn(List<Integer> values) {
+            addCriterion("created in", values, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedNotIn(List<Integer> values) {
+            addCriterion("created not in", values, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedBetween(Integer value1, Integer value2) {
+            addCriterion("created between", value1, value2, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatedNotBetween(Integer value1, Integer value2) {
+            addCriterion("created not between", value1, value2, "created");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedIsNull() {
+            addCriterion("modified is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedIsNotNull() {
+            addCriterion("modified is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedEqualTo(Integer value) {
+            addCriterion("modified =", value, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedNotEqualTo(Integer value) {
+            addCriterion("modified <>", value, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedGreaterThan(Integer value) {
+            addCriterion("modified >", value, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("modified >=", value, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedLessThan(Integer value) {
+            addCriterion("modified <", value, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedLessThanOrEqualTo(Integer value) {
+            addCriterion("modified <=", value, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedIn(List<Integer> values) {
+            addCriterion("modified in", values, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedNotIn(List<Integer> values) {
+            addCriterion("modified not in", values, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedBetween(Integer value1, Integer value2) {
+            addCriterion("modified between", value1, value2, "modified");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifiedNotBetween(Integer value1, Integer value2) {
+            addCriterion("modified not between", value1, value2, "modified");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

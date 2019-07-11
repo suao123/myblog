@@ -16,6 +16,12 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "文章内容")
     private String content;
 
+    @ApiModelProperty(value = "文章发布时间")
+    private Integer created;
+
+    @ApiModelProperty(value = "文章修改时间")
+    private Integer modified;
+
     private static final long serialVersionUID = 1L;
 
     public Integer gettId() {
@@ -50,6 +56,22 @@ public class Article implements Serializable {
         this.content = content;
     }
 
+    public Integer getCreated() {
+        return created;
+    }
+
+    public void setCreated(Integer created) {
+        this.created = created;
+    }
+
+    public Integer getModified() {
+        return modified;
+    }
+
+    public void setModified(Integer modified) {
+        this.modified = modified;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -60,6 +82,8 @@ public class Article implements Serializable {
         sb.append(", title=").append(title);
         sb.append(", author=").append(author);
         sb.append(", content=").append(content);
+        sb.append(", created=").append(created);
+        sb.append(", modified=").append(modified);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
