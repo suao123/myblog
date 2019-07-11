@@ -1,0 +1,13 @@
+spring:
+  profiles:
+    active: dev #默认为开发环境
+
+mybatis:
+  mapper-locations:
+    -classpath: mapper/*.xml
+    -classpath*: com/**/mapper/*.xml
+
+logging:
+  level:
+    root: info #日志配置DEBUG，INFO，WARN，REEOR
+    com.blog: debug
