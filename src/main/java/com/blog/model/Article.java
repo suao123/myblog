@@ -10,6 +10,9 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "文章标题")
     private String title;
 
+    @ApiModelProperty(value = "文章作者")
+    private String author;
+
     @ApiModelProperty(value = "文章内容")
     private String content;
 
@@ -31,6 +34,14 @@ public class Article implements Serializable {
         this.title = title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     public String getContent() {
         return content;
     }
@@ -47,6 +58,7 @@ public class Article implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", tId=").append(tId);
         sb.append(", title=").append(title);
+        sb.append(", author=").append(author);
         sb.append(", content=").append(content);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
