@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<head th:fragment="header">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <<title>瓜皮博客</title>
-    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-   <link th:href="@{//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
-   <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}" rel="stylesheet" type="text/css"/>
-   <link th:href="@{//cdn.bootcss.com/limonte-sweetalert2/6.4.1/sweetalert2.min.css}" rel="stylesheet"/>
-</head>
-<body>
+<head th:replace="header :: header"></head>
+<body style="background-color: #0f0f0f">
+    <div th:replace="header :: navigation"></div>
 
+    <script th:src="@{/static/js/snowflakes.min.js}"></script>
+    <script th:src="@{/static/js/index.js}"></script>
 </body>
 </html>

@@ -4,6 +4,20 @@ server:
 spring:
   profiles:
     active: dev #默认为开发环境
+  thymeleaf: #thymeleaf
+    prefix: classpath:/templates/
+    check-template-location: true
+    suffix: .html
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    mode: HTML
+    cache: false
+  devtools: #热部署
+    restart:
+      enabled: true
+      additional-paths: src/mian/java
+      exclude: static
 
 mybatis:
   mapper-locations:
@@ -21,3 +35,4 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: countSql
+
