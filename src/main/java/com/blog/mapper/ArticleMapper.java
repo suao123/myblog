@@ -3,6 +3,8 @@ package com.blog.mapper;
 import com.blog.model.Article;
 import com.blog.model.ArticleExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
