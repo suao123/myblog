@@ -26,6 +26,13 @@ public interface ArticleService {
     PageInfo<Article> getArticle(Integer p, Integer limit);
 
     /**
+     * 查询文章返回一条数据
+     * @param id //文章编号
+     * @return Article
+     */
+    Article findArticle(Integer id);
+
+    /**
      * 搜索、分页
      * @param keyword
      * @param page

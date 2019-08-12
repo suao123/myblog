@@ -22,6 +22,10 @@ public class Article implements Serializable {
     @ApiModelProperty(value = "文章修改时间")
     private Integer modified;
 
+    private String htmlcontent;
+
+    private String type;
+
     private static final long serialVersionUID = 1L;
 
     public Integer gettId() {
@@ -72,6 +76,22 @@ public class Article implements Serializable {
         this.modified = modified;
     }
 
+    public String getHtmlcontent() {
+        return htmlcontent;
+    }
+
+    public void setHtmlcontent(String htmlcontent) {
+        this.htmlcontent = htmlcontent;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -84,6 +104,8 @@ public class Article implements Serializable {
         sb.append(", content=").append(content);
         sb.append(", created=").append(created);
         sb.append(", modified=").append(modified);
+        sb.append(", htmlcontent=").append(htmlcontent);
+        sb.append(", type=").append(type);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{//cdn.bootcss.com/limonte-sweetalert2/6.4.1/sweetalert2.min.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/static/editormd/css/style.css}"/>
+    <link rel="stylesheet" th:href="@{/static/editormd/css/editormd.css}"/>
+    <link rel="shortcut icon" th:href="@{//pandao.github.io/editor.md/favicon.ico}" type="image/x-icon"/>
+</head>
+<body>
+
+
+<div id="tip"  class="alert alert-success alert-dismissable  show">
+
+</div>
+
+<br/>
+<br/>
+<div class="row">
+    <div class="input-group col-md-2 col-md-offset-5" style="margin: 0 auto">
+        <span class="input-group-addon" th:text="标题"></span>
+        <input class="form-control" type="text" name="title"  id="title"/>
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<div class="row">
+    <div class="form-group col-md-2 col-md-offset-5">
+        <label for="article_type" th:text="文章类型"></label>
+            <select id="article_type"  class="form-control">
+                <option>1</option>
+                <option>2</option>
+            </select>
+    </div>
+</div>
+
+<br/>
+<br/>
+
+<div id="my-editormd" >
+    <!-- 注意：name属性的值-->
+    <textarea id="content" name="my-editormd-html-code" class="editormd-markdown-textarea"></textarea>
+    <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+    <textarea id="htmlContent" class="editormd-html-textarea" name="text" ></textarea>
+</div>
+
+<div>
+    <button  id="submitBtn" type="button" class="btn btn-info btn-lg active" th:text="发布文章"></button>
+</div>
+
+
+<!--设置背景图片-->
+<div th:replace="/blog/background :: article_background"></div>
+
+</body>
+<script th:src="@{/static/editormd/js/jquery.min.js}" ></script>
+<script th:src="@{/static/editormd/js/editormd.min.js}"></script>
+<script type="text/javascript">
+    $(function() {
+
+        editormd.emoji ={
+            path : "../../static/editormd/plugins/emoji-dialog/emoji/",
+            ext : ".png"
+        };
+
+        editormd.mouseOrTouch = function(mouseEventType, touchEventType) {
+            mouseEventType = mouseEventType || "click";
+            touchEventType = touchEventType || "touchend";
+
+            var eventType  = mouseEventType;
+
+            try {
+                document.createEvent("TouchEvent");
+                eventType = touchEventType;
+            } catch(e) {}
+
+            try {
+                document.createEvent("MouseEvent");
+                eventType = mouseEventType;
+            } catch(e) {}
+
+            return eventType;
+        };
+
+        editormd("my-editormd", {//注意1：这里的就是上面的DIV的id属性值
+            width   : "90%",
+            height  : 640,
+            theme: "dark",
+            previewTheme: "dark",
+            editorTheme: "pastel-on-dark",
+            codeFold: true,
+            syncScrolling : "single",
+            path    : "../../static/editormd/lib/",//注意2：你的路径
+            saveHTMLToTextarea : true, //注意3：这个配置，方便post提交表单
+
+            htmlDecode : "style,script,iframe|on*",            // 开启 HTML 标签解析，为了安全性，默认不开启
+            //toolbar  : false,             //关闭工具栏
+            //previewCodeHighlight : false, // 关闭预览 HTML 的代码块高亮，默认开启
+            emoji : true,
+            taskList : true,
+            tocm            : true,         // Using [TOCM]
+            tex : true,                   // 开启科学公式TeX语言支持，默认关闭
+            flowChart : true,             // 开启流程图支持，默认关闭
+            sequenceDiagram : true,       // 开启时序/序列图支持，默认关闭,
+            //dialogLockScreen : false,   // 设置弹出层对话框不锁屏，全局通用，默认为true
+            //dialogShowMask : false,     // 设置弹出层对话框显示透明遮罩层，全局通用，默认为true
+            //dialogDraggable : false,    // 设置弹出层对话框不可拖动，全局通用，默认为true
+            //dialogMaskOpacity : 0.4,    // 设置透明遮罩层的透明度，全局通用，默认值为0.1
+            //dialogMaskBgColor : "#000", // 设置透明遮罩层的背景颜色，全局通用，默认为#fff
+            imageUpload : true,
+            imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL : "/admin/editormdPic",
+            onload : function() {
+                console.log('onload', this);
+                }
+            });
+    });
+
+    showtip = document.getElementById('tip');
+    var tip = "<button type=\"button\" class=\"close\" data-dismiss=\"alert\">×</button>";
+
+    $("#submitBtn").click(
+        function () {
+            submitblog();
+        }
+    );
+
+    function submitblog() {
+        var title = document.getElementById('title').value;
+        var article_type = document.getElementById('article_type').value;
+        var content = document.getElementById('content').value;
+        var htmlContent = document.getElementById('htmlContent').value;
+        $.ajax({
+            type: "post",
+            url: "submitBlog",
+            data: {
+                "title" : title,
+                "type" : article_type,
+                "content" : content,
+                "htmlContent" : htmlContent
+            },
+            dataType: "json",
+            success: function (data) {
+                word = data.word;
+                tip = tip + "<p>" + word + "</p>";
+                showtip.innerHTML = tip;
+            },
+            error: function () {
+                tip = tip + "<p>发布失败</p>";
+                showtip.innerHTML = tip;
+            }
+        })
+    }
+
+</script>
+</html>
+
+

@@ -81,6 +81,21 @@ public class ArticleServiceimpl implements ArticleService {
     }
 
     @Override
+    public Article findArticle(Integer id) {
+        log.debug("开始查询文章");
+        ArticleExample example = new ArticleExample();
+        example.or().andTIdEqualTo(id);
+        Article result = articleMapper.selectByPrimaryKey(id);
+        if(result == null){
+            log.warn("查询不到这篇文章");
+            return null;
+        } else {
+            log.debug("查找文章结束");
+            return result;
+        }
+    }
+
+    @Override
     public void updateArticle(Article article) {
         articleMapper.updateByPrimaryKey(article);
     }

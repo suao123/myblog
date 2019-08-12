@@ -13,16 +13,27 @@ spring:
       content-type: text/html
     mode: HTML
     cache: false
-  devtools: #热部署
-    restart:
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 200MB
       enabled: true
-      additional-paths: src/mian/java
-      exclude: static
+      file-size-threshold: 200KB
+  redis:
+    database: 0
+    host: localhost
+    port: 6379
+    password:
+    ssl: false
+
+
+file:
+  upload: /Users/suao/Desktop/代码/myblog/src/main/resources/upload
+  uploadPic : /Users/suao/Desktop/代码/myblog/src/main/resources/static/uploadImage
 
 mybatis:
-  mapper-locations:
-    -classpath: mapper/*.xml
-    -classpath*: com/**/mapper/*.xml
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.blog.mapper
 
 
 logging:

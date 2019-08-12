@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>瓜皮管理员界面</title>
+
+    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link th:href="@{//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{//cdn.bootcss.com/limonte-sweetalert2/6.4.1/sweetalert2.min.css}" rel="stylesheet"/>
+
+
+    <style>
+        .window{
+            position: absolute;
+            top: 50%;
+            left: 45%;
+            width: 200px;
+        }
+        .winBtn{
+          position: absolute;
+          top: 65%;
+          left: 50%;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="window row">
+        <div class="input-group">
+            <span class="input-group-addon" style="color: lightblue" th:text="账号">账号</span>
+            <input type="text" class="form-control" id="username" placeholder="您的账号">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon" style="color: lightblue" th:text="密码">密码</span>
+            <input type="password" class="form-control" id="password" placeholder="您的密码"/>
+        </div>
+    </div>
+
+    <br>
+
+
+    <button class="winBtn btn btn-info" type="button" name="button" id="loginBtn" th:text="登陆"></button>
+
+</body>
+<script th:src="@{/static/editormd/js/jquery.min.js}" ></script>
+<script th:src="@{/static/editormd/js/editormd.min.js}"></script>
+<script type="text/javascript">
+    $("#loginBtn").click(
+        function () {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            $.ajax({
+                type: "post",
+                dataType: "JSON",
+                url: "checklogin",
+                data: {
+                    "username": username,
+                    "password": password
+                },
+                success: function (data) {
+                    window.location.href = data.html
+                },
+                error: function () {
+                    alert("密码账号输入错误");
+                }
+            })
+        }
+    )
+</script>
+</html>

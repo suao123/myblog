@@ -493,6 +493,146 @@ public class ArticleExample {
             addCriterion("modified not between", value1, value2, "modified");
             return (Criteria) this;
         }
+
+        public Criteria andHtmlcontentIsNull() {
+            addCriterion("htmlContent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentIsNotNull() {
+            addCriterion("htmlContent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentEqualTo(String value) {
+            addCriterion("htmlContent =", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentNotEqualTo(String value) {
+            addCriterion("htmlContent <>", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentGreaterThan(String value) {
+            addCriterion("htmlContent >", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentGreaterThanOrEqualTo(String value) {
+            addCriterion("htmlContent >=", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentLessThan(String value) {
+            addCriterion("htmlContent <", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentLessThanOrEqualTo(String value) {
+            addCriterion("htmlContent <=", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentLike(String value) {
+            addCriterion("htmlContent like", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentNotLike(String value) {
+            addCriterion("htmlContent not like", value, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentIn(List<String> values) {
+            addCriterion("htmlContent in", values, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentNotIn(List<String> values) {
+            addCriterion("htmlContent not in", values, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentBetween(String value1, String value2) {
+            addCriterion("htmlContent between", value1, value2, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andHtmlcontentNotBetween(String value1, String value2) {
+            addCriterion("htmlContent not between", value1, value2, "htmlcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLike(String value) {
+            addCriterion("type like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotLike(String value) {
+            addCriterion("type not like", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(String value1, String value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(String value1, String value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

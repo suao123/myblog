@@ -4,5 +4,28 @@
 </head>
 <body>
 
+    <div style="background-color: rgba(144, 199, 188, 0.2); width: 50%; margin: 0 auto">
+        <div class="container" style="font-family: 'Microsoft YaHei',serif;">
+            <div class="card">
+                <font color="#ff69b4" >
+                    <img class="card-img-top" th:src="@{/static/images/nike.jpeg}" alt="好看的图图片" style="width: fit-content"/>
+                    <br>
+                      <div class="card-body">
+                        <font size="4">
+                            <p class="card-text" th:text="lalalala"></p>
+                        </font>
+
+                        <font size="5">
+                            <a href="#" class="card-link" >article link</a>
+                        </font>
+                         
+                      </div>
+                </font>
+            </div>
+        </div>
+    </div>
+
+    <!--设置背景图片-->
+    <div th:replace="/blog/background :: article_background"></div>
 </body>
 </html>

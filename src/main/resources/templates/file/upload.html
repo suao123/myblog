@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="file/header :: header">
+</head>
+<body>
+
+<div class="container">
+    <h2 style="text-align: center; color: lightseagreen">上传文件窗口</h2>
+</div>
+
+<div class="container">
+    <input type="file"  class="file-loading" id="file" name="file"  data-show-upload="true" data-show-caption="true"/><br>
+</div>
+
+
+
+<div th:replace="file/background :: file_background"></div>
+</body>
+</html>
+<script>
+    $(function () {
+        $("#file").fileinput({
+            language: "zh", //设置语言
+            uploadUrl: "/file/file_upload", //上传的地址
+            browseOnZoneClick: true,//点击虚线框内(上传区)上传(非点击上传按钮上传)
+            //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
+            uploadAsync: true, //默认异步上传
+            showUpload: true, //是否显示上传按钮
+            showRemove: true, //显示移除按钮
+            showPreview: true, //是否显示预览
+            showCaption: true,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式    
+            dropZoneEnabled: true,//是否显示拖拽区域
+            maxFileCount: 10, //表示允许同时上传的最大文件个数
+            enctype:'multipart/form-data',
+            validateInitialCount: true,
+            theme: "explorer",
+
+            previewFileIcon: "<iclass='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+            uploadLabel: "开始上传",
+            removeLabel: "清除所有",
+            browseLabel: "选择本地文件"
+        }).on("fileuploaded", function () {
+            console.log("上传成功！")
+        }).on("fileerror", function () {
+            console.log("上传失败!")
+        })
+
+    });
+</script>
