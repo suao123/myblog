@@ -2,10 +2,10 @@ package com.blog.service.impl;
 
 import com.blog.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -15,37 +15,29 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class RedisServiceImpl implements RedisService {
 
+
     @Autowired
-    private StringRedisTemplate stringRedisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Override
     public void set(String key, String value) {
-        stringRedisTemplate.opsForValue().set(key, value);
+        redisTemplate.opsForSet().add(key, value);
     }
 
     @Override
-    public String get(String key) {
-        return stringRedisTemplate.opsForValue().get(key);
+    public Set get(String key) {
+        return redisTemplate.opsForSet().members(key);
     }
 
     @Override
     public boolean expire(String key, long expire) {
-        Boolean IsExpire = stringRedisTemplate.expire(key, expire, TimeUnit.SECONDS);
+        Boolean IsExpire = redisTemplate.expire(key, expire, TimeUnit.SECONDS);
         return IsExpire;
     }
 
     @Override
-    public void remove(String key) {
-        stringRedisTemplate.delete(key);
+    public void remove(String key, String value) {
+        Objects.requireNonNull(redisTemplate.opsForSet().members(key)).remove(value);
     }
 
-    @Override
-    public Long increment(String key, long delta) {
-        return stringRedisTemplate.opsForValue().increment(key, delta);
-    }
-
-    @Override
-    public Set<String> listAll() {
-        return stringRedisTemplate.keys("*");
-    }
 }

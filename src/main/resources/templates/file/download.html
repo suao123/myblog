@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="file/header :: header">
+<head th:replace=" file/header :: header">
 </head>
 <body>
 
 <div class="container" >
     <h2 th:text="下载所需要的文件" style="text-align: center;color: #76E2F8"></h2>
-    <div th:each="filename : ${fileName}" style="background-color: rgba(118, 226, 248, 0.4);text-align: center;">
-        <div>
-            <a th:href="@{'/upload/' + ${filename}}" th:text="${filename}" style="color: lightseagreen"></a>
-        </div>
-        <br/>
+    <div id="filename" style="background-color: rgba(118, 226, 248, 0.4);text-align: center;">
+
     </div>
 </div>
 
 
-<div th:replace="file/background :: file_background"></div>
+<div th:replace=" file/background :: file_background"></div>
 </body>
+<script th:src="@{/static/editormd/js/jquery.min.js}" ></script>
+<script type="text/javascript">
+    var filename = document.getElementById('filename');
+    var filename_str = '';
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "getUploadName",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++){
+                    filename_str = filename_str + '<div>\n' +
+                        '            <a href="upload/'+ data[i] +'" style="color: lightseagreen">' + data[i] + '</a>\n' +
+                        '        </div>\n' +
+                        '        <br/>'
+                }
+                filename.innerHTML = filename_str;
+            }
+        })
+    })
+</script>
 </html>

@@ -11,8 +11,8 @@ public class webconfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")
-                .addResourceLocations("file:/Users/suao/Desktop/代码/myblog/src/main/resources/static/");
-        registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:/Users/suao/Desktop/代码/myblog/src/main/resources/upload/");
+                .addResourceLocations("file:/root/blog/static/");
+        registry.addResourceHandler("/file/upload/**")
+                .addResourceLocations("file:/root/blog/upload/");
     }
 }

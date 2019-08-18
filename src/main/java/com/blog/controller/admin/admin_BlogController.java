@@ -9,14 +9,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class admin_BlogController {
 
     //文章编辑
-    @RequestMapping("/editarticle")
+    @RequestMapping("editarticle")
     public String editarticle(){
         return "admin/editarticle";
     }
 
     //登陆跳转
-    @RequestMapping("/login")
+    @RequestMapping("login")
     public String login(){
         return "admin/login";
+    }
+
+    //文章类型添加
+    @RequestMapping("types")
+    public String types(){
+        return "admin/types";
     }
 }

@@ -16,7 +16,7 @@ public interface RedisService {
     /**
      * 获取数据
      */
-    String get(String key);
+    Set get(String key);
 
     /**
      * 设置超期时间
@@ -26,17 +26,6 @@ public interface RedisService {
     /**
      * 删除数据
      */
-    void remove(String key);
-
-    /**
-     *自增操作
-     * @param delta 自增步长
-     */
-    Long increment(String key, long delta);
-
-    /**
-     *  去除所有的key-value
-     */
-    Set<String> listAll();
+    void remove(String key, String value);
 
 }

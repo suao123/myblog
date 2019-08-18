@@ -11,7 +11,7 @@ spring:
     encoding: UTF-8
     servlet:
       content-type: text/html
-    mode: HTML
+    mode: HTML5
     cache: false
   servlet:
     multipart:
@@ -28,8 +28,8 @@ spring:
 
 
 file:
-  upload: /Users/suao/Desktop/代码/myblog/src/main/resources/upload
-  uploadPic : /Users/suao/Desktop/代码/myblog/src/main/resources/static/uploadImage
+  upload: /root/blog/upload
+  uploadPic : /root/blog/upload/static/uploadImage
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

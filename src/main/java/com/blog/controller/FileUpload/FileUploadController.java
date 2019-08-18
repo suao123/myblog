@@ -20,13 +20,11 @@ public class FileUploadController {
 
     @RequestMapping("/upload")
     public String upload(){
-        return "/file/upload";
+        return "file/upload";
     }
 
     @RequestMapping("/download")
     public String download(Model model){
-        Set<String> fileName = redisService.listAll();
-        model.addAttribute("fileName", fileName);
-        return "/file/download";
+        return "file/download";
     }
 }

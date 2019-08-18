@@ -35,14 +35,20 @@
     <div class="form-group col-md-2 col-md-offset-5">
         <label for="article_type" th:text="文章类型"></label>
             <select id="article_type"  class="form-control">
-                <option>1</option>
-                <option>2</option>
+
             </select>
     </div>
 </div>
 
 <br/>
 <br/>
+
+<div class="row">
+    <div class="form-group col-md-2 col-md-offset-5">
+        <span class="input-group-addon" th:text="作者"></span>
+        <input class="form-control" type="text" name="title"  id="author"/>
+    </div>
+</div>
 
 <div id="my-editormd" >
     <!-- 注意：name属性的值-->
@@ -57,12 +63,32 @@
 
 
 <!--设置背景图片-->
-<div th:replace="/blog/background :: article_background"></div>
+<div th:replace=" blog/background :: article_background"></div>
 
 </body>
 <script th:src="@{/static/editormd/js/jquery.min.js}" ></script>
 <script th:src="@{/static/editormd/js/editormd.min.js}"></script>
 <script type="text/javascript">
+
+    $(function () {
+        var type_str = '';
+        var showarticle_type = document.getElementById('article_type');
+       $.ajax({
+           type: "GET",
+           dataType: "JSON",
+           url: "getTypes",
+           success: function (data) {
+               for (var i = 0; i < data.length; i++){
+                   type_str = type_str + '<option>' + data[i] +'</option>';
+               }
+               showarticle_type.innerHTML = type_str;
+           },
+           error: function () {
+               alert("调用数据发生错误");
+           }
+       })
+    });
+
     $(function() {
 
         editormd.emoji ={
@@ -137,6 +163,7 @@
         var article_type = document.getElementById('article_type').value;
         var content = document.getElementById('content').value;
         var htmlContent = document.getElementById('htmlContent').value;
+        var author = document.getElementById('author').value;
         $.ajax({
             type: "post",
             url: "submitBlog",
@@ -144,7 +171,8 @@
                 "title" : title,
                 "type" : article_type,
                 "content" : content,
-                "htmlContent" : htmlContent
+                "htmlContent" : htmlContent,
+                "author": author
             },
             dataType: "json",
             success: function (data) {

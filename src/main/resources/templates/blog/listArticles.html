@@ -1,31 +1,89 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" >
-<head  th:replace="/blog/header :: header">
+<head  th:replace=" blog/header :: header">
 </head>
-<body>
+<body style="overflow-y:auto">
 
-    <div style="background-color: rgba(144, 199, 188, 0.2); width: 50%; margin: 0 auto">
-        <div class="container" style="font-family: 'Microsoft YaHei',serif;">
-            <div class="card">
-                <font color="#ff69b4" >
-                    <img class="card-img-top" th:src="@{/static/images/nike.jpeg}" alt="好看的图图片" style="width: fit-content"/>
-                    <br>
-                      <div class="card-body">
-                        <font size="4">
-                            <p class="card-text" th:text="lalalala"></p>
-                        </font>
+  <div id="articles" >
 
-                        <font size="5">
-                            <a href="#" class="card-link" >article link</a>
-                        </font>
-                         
-                      </div>
-                </font>
-            </div>
-        </div>
-    </div>
+  </div>
 
     <!--设置背景图片-->
-    <div th:replace="/blog/background :: article_background"></div>
+   <div th:replace=" blog/background :: article_background"></div>
 </body>
+<script th:src="@{/static/editormd/js/jquery.min.js}" ></script>
+
+<script type="text/javascript">
+    <!--调取网址上的参数-->
+    var getParam = function(name){
+        var search = document.location.search;
+        var pattern = new RegExp("[?&]"+name+"\=([^&]+)", "g");
+        var matcher = pattern.exec(search);
+        var items = null;
+        if(null != matcher){
+            try{
+                items = decodeURIComponent(decodeURIComponent(matcher[1]));
+            }catch(e){
+                try{
+                    items = decodeURIComponent(matcher[1]);
+                }catch(e){
+                    items = matcher[1];
+                }
+            }
+        }
+        return items;
+    };
+
+
+</script>
+
+<script type="text/javascript">
+
+  var str = '';
+  tmp = document.getElementById('articles');
+
+  $(function () {
+    var pageNo = getParam("pageNo");
+    var pageSize = getParam("pageSize");
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "submitArticle",
+        data: {
+            pageNo: pageNo,
+            pageSize: pageSize
+        },
+        success: function (data) {
+            result = data.list;
+            for (var i = 0; i < result.length; i++) {
+                str = str + ''+
+                    '<div style="background-color: rgba(144, 199, 188, 0.2); width: 50%; margin: 0 auto">'+
+                    '<div class="container" style="font-family: \'Microsoft YaHei\',serif;">'+
+                    '<div class="card">'+
+                    '<font color="#ff69b4" >'+
+                    '<div class="card-body">'+
+                    '<font size="4">'+
+                    '<p class="card-text">文章:  ' + result[i].title +'</p>'+
+                    '<p class="card-text">作者:  ' + result[i].author +'</p>'+
+                    '</font>'+
+                    '<font size="5">'+
+                    '<a href="' + '/blog/blogDital?tId=' + result[i].tId + '" class="card-link" >' + '文章链接' + '</a>'+
+                    '</font>'+
+                    '</div>'+
+                    '</font>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '<br>'
+            }
+            tmp.innerHTML = str;
+        }
+    });
+
+
+  })
+
+
+</script>
 </html>
